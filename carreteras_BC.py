@@ -20,18 +20,7 @@ accesibilidad = bc_csv['grado_accesibilidad'].value_counts().to_frame('count').s
 print("Por accesibilidad:")
 print(accesibilidad)
 #%%
-#%%
-municipios_bc['alta'] = int(accesibilidad.loc['Accesibilidad alta'])
-#%%
-municipios_bc['baja'] = int(accesibilidad.loc['Accesibilidad baja'])
-#%%
-municipios_bc['media'] = int(accesibilidad.loc['Accesibilidad media'])
-#%%
-municipios_bc['muy alta'] = int(accesibilidad.loc['Accesibilidad muy alta'])
-#%%
-municipios_bc['muy baja'] = int(accesibilidad.loc['Accesibilidad muy baja'])
-#%%
-print(municipios_bc)
-#%%
-alta = int(accesibilidad.loc['Accesibilidad alta'])
+por_municipio = bc_csv.groupby(['municipio', 'grado_accesibilidad']).size().sort_index()
+print(por_municipio)
+por_municipio.to_csv('carreteras_por_municipio.csv')
 #%%
